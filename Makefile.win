@@ -1,0 +1,33 @@
+# Project: Projeto2
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = import3D.o glm.o $(RES)
+LINKOBJ  = import3D.o glm.o $(RES)
+LIBS =  -L"C:/MinGW/lib" -L"D:/disciplinas/unilasalle/cg/g2/fontes/ImportarObj" -mwindows -lopengl32 -lglu32 -lglut32  
+INCS =  -I"C:/MinGW/include" 
+CXXINCS =  -I"C:/MinGW/include/c++" 
+BIN  = importObj.exe
+CXXFLAGS = $(CXXINCS)   -lpthreadGC2 -lopengl32 -lglu32 -lglut32 -lwsock32
+CFLAGS = $(INCS)   -lpthreadGC2 -lopengl32 -lglu32 -lglut32 -lwsock32
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before importObj.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "importObj.exe" $(LIBS)
+
+import3D.o: import3D.c
+	$(CC) -c import3D.c -o import3D.o $(CFLAGS)
+
+glm.o: glm.c
+	$(CC) -c glm.c -o glm.o $(CFLAGS)
